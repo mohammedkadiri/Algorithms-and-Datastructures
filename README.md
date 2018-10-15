@@ -1,4 +1,4 @@
-# This repository is used to implement data structures and DS such as
+# This repository is used to implement DS and Algos such as
 - Linked List
 - Stacks
 - Queues
