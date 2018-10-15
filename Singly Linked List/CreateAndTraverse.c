@@ -1,0 +1,98 @@
+/*
+* C program to create and traverse a Linked list
+*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure of a node
+struct node
+{
+    int data;  // Data
+    struct node *next; // Address
+}*head;
+
+// Function to create and display  list
+void createList(int n);
+void traverseList();
+
+int main()
+{
+    int n;
+
+    printf("Enter the total number of nodes: ");
+    scanf("%d", &n);
+
+    createList(n);
+
+    printf("\nData in the list \n");
+    traverseList();
+
+    return 0;
+}
+
+// Create a list of n nodes
+void createList(int n)
+{
+    struct node *newNode, *temp;
+    int data,i;
+
+    head = (struct node *)malloc(sizeof(struct node));
+
+    // Terminate if memory not allocated
+    if(head == NULL)
+    {
+        printf("Unable to allocate memory.");
+        exit(0);
+    }
+
+    // Input data of node from the user
+    printf("Enter the data of node 1: ");
+    scanf("%d",&data);
+
+    head->data = data; // Link data with data
+    head->next = NULL; // Link address field with NULL
+
+    // Create n - 1 nodes and add to list
+    temp = head;
+    for(i = 2; i <= n; i++)
+    {
+        newNode = (struct node *)malloc(sizeof(struct node));
+
+        // If memory is not allocate for newNode
+        if(newNode == NULL)
+        {
+              printf("Unable to allocate memory.");
+              break;
+        }
+
+        printf("Enter the data of node %d: ",i);
+        scanf("%d", &data);
+
+        newNode->data = data; //Link the data with data
+        newNode->next = NULL; //Make sure the new node points to Null
+
+        temp->next = newNode; //Link previous node
+        temp = temp->next;    // Make current node previous node
+    }
+}
+
+void traverseList()
+{
+    struct node *temp;
+
+    //Return if list is empty
+    if(head == NULL)
+    {
+        printf("List is empty");
+        return;
+    }
+
+    temp = head;
+    while(temp != NULL)
+    {
+        printf("Data = %d\n", temp->data);
+        temp = temp->next;
+    }
+}
